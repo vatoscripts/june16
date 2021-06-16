@@ -23,12 +23,12 @@ agent any
         GIT_CREDS = credentials('GIT')
       }
       steps {
-        
+          sh "rm -r argocddemodeploy"
           sh "git clone https://github.com/vatoscripts/argocddemodeploy.git"
           sh "git config --global user.email 'vatoscripts@gmail.com'"
           sh "git config --global user.name 'vatoscripts'"
          
-
+         
           dir("argocddemodeploy") {
             sh "cd ./e2e && ls && sed 's/musesi/moses/g' names.txt > new_names.txt"
             //sh "git remote add origin https://github.com/vatoscripts/argocd-demo-deploy.git && git add ."
