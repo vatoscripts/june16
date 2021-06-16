@@ -24,18 +24,18 @@ agent any
       }
       steps {
         
-          sh "git clone https://github.com/vatoscripts/argocd-demo-deploy.git"
+          sh "git clone https://github.com/vatoscripts/argocddemodeploy.git"
           sh "git config --global user.email 'vatoscripts@gmail.com'"
           sh "git config --global user.name 'vatoscripts'"
          
 
-          dir("argocd-demo-deploy") {
+          dir("argocddemodeploy") {
             sh "cd ./e2e && ls && sed 's/musesi/moses/g' names.txt > new_names.txt"
             //sh "git remote add origin https://github.com/vatoscripts/argocd-demo-deploy.git && git add ."
-            sh "git remote set-url origin git@github.com:vatoscripts/argocd-demo-deploy.git"
+            //sh "git remote set-url origin git@github.com:vatoscripts/argocd-demo-deploy.git"
             sh "git add ."
             sh "git status"
-            sh "git commit -m 'publish new version' && git push"
+            sh "git commit -m 'publish new version' && git push -u origin1 master"
           }
         
       }
@@ -46,9 +46,9 @@ agent any
       steps {
         input message:'Really Deploy?'
         
-          dir("argocd-demo-deploy") {
-            sh "cd ./prod && ls && kustomize edit set image kiyange26773/jf1:${env.GIT_COMMIT}"
-            sh "git commit -am 'Publish new version...' && git push || echo 'no changes made...'"
+          dir("") {
+           // sh "cd ./prod && ls && kustomize edit set image kiyange26773/jf1:${env.GIT_COMMIT}"
+           // sh "git commit -am 'Publish new version...' && git push || echo 'no changes made...'"
           }
     
       }
