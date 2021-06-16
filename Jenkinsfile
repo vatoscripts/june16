@@ -23,7 +23,8 @@ agent any
         GIT_CREDS = credentials('GIT')
       }
       steps {
-          sh "rm -r argocddemodeploy"
+         
+          sh "git clean -fd"
           sh "git clone https://github.com/vatoscripts/argocddemodeploy.git"
           sh "git config --global user.email 'vatoscripts@gmail.com'"
           sh "git config --global user.name 'vatoscripts'"
@@ -46,7 +47,7 @@ agent any
       steps {
         input message:'Really Deploy?'
         
-          dir("") {
+          dir("argocddemodeploy") {
            // sh "cd ./prod && ls && kustomize edit set image kiyange26773/jf1:${env.GIT_COMMIT}"
            // sh "git commit -am 'Publish new version...' && git push || echo 'no changes made...'"
           }
