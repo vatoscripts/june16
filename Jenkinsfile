@@ -35,7 +35,7 @@ agent any
             //sh "git remote set-url origin git@github.com:vatoscripts/argocd-demo-deploy.git"
             sh "git add ."
             sh "git status"
-            sh "git commit -m 'publish new version' && git push -u origin1 master"
+            sh "git commit -m 'publish new version' && git push"
           }
         
       }
