@@ -25,15 +25,15 @@ agent any
       steps {
          
           sh "git clean -fd"
-          sh "mkdir cddirectory && cd cddirectory"
+         // sh "mkdir cddirectory && cd cddirectory"
           sh "git clone https://github.com/vatoscripts/argocddemodeploy11.git"
           sh "git config --global user.email 'vatoscripts@gmail.com'"
           sh "git config --global user.name 'vatoscripts'"
          
          
-          dir("cddirectory/argocddemodeploy11") {
+          dir("argocddemodeploy11") {
             sh "cd ./e2e && ls && sed 's/musesi/moses/g' names.txt > new_names.txt"
-            sh "git remote add origin https://github.com/vatoscripts/argocddemodeploy1.git"
+            sh "git remote add origin https://github.com/vatoscripts/argocddemodeploy11.git"
             //sh "git remote set-url origin git@github.com:vatoscripts/argocddemodeploy.git"
             sh "git add ."
             sh "git status"
@@ -48,7 +48,7 @@ agent any
       steps {
         input message:'Really Deploy?'
         
-          dir("cddirectory/argocddemodeploy11") {
+          dir("argocddemodeploy11") {
            // sh "cd ./prod && ls && kustomize edit set image kiyange26773/jf1:${env.GIT_COMMIT}"
            // sh "git commit -am 'Publish new version...' && git push || echo 'no changes made...'"
           }
